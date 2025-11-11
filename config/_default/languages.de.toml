@@ -1,0 +1,26 @@
+# -- German Language Configuration --
+
+languageCode = "de-DE"
+languageName = "Deutsch"
+weight = 1
+
+title = "Beimgraben.NET"
+
+[params]
+  dateFormat = "2. January 2006"
+
+  # mainSections is used to populate the recent articles section
+  mainSections = ["posts"]
+
+  [params.author]
+    name = "Frederik Beimgraben"
+    image = ""
+    headline = "Welcome to my personal homepage"
+    bio = "Frederik Beimgraben's personal homepage"
+    links = [
+      { github = "https://github.com/frederikbeimgraben" },
+      { email = "mailto:frederik@beimgraben.net" },
+      { linkedin = "https://www.linkedin.com/in/frederik-beimgraben/" },
+      { matrix = "https://matrix.to/#/@frederik:beimgraben.net" },
+      { pgpkey = "https://keys.openpgp.org/vks/v1/by-fingerprint/E7B547E98B7DADFFF5E79AEAF12BC7A81B13A543" }
+    ]
