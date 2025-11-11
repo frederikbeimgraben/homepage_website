@@ -3,10 +3,6 @@ title: "Beimgraben.NET"
 description: "Frederik Beimgraben's personal homepage"
 ---
 
-# Willkommen bei Beimgraben.NET
-
-Dies ist meine persönliche Homepage. Hier findest du meinen Blog, Links zu verschiedenen Services und Informationen über mich.
-
 ## Über mich
 
 Ich bin Frederik, ein Techie mit Interesse an Open Source Software, Systemadministration, Web-Entwicklung, Audio und Lautsprecherbau.
