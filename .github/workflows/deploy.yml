@@ -19,7 +19,7 @@ jobs:
           host: ${{ secrets.HOSTNAME }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          port: 20022
+          port: 22
           script: |
             cd ${{ secrets.SERVER_PATH }}
             git reset --hard
