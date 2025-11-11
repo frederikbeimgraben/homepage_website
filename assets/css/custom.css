@@ -118,7 +118,7 @@ html {
 }
 
 @media (max-width: 640px) {
-    header {
+    .py-6 {
         padding-top: 2.5rem;
     }
 }
