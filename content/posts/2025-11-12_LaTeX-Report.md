@@ -1,5 +1,5 @@
 +++
-title = "2025 11 12_LaTeX Report"
+title = "LaTeX HSRT-Report Template für die Hochschule Reutlingen"
 date = "2025-11-12T00:09:16+01:00"
 keywords = ["LaTeX", "HSRT"]
 description = "Mein neues LaTeX-Template für die Hochschule"
