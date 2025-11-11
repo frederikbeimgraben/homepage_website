@@ -16,11 +16,6 @@
   weight = 10
 
 [[main]]
-  name = "Links"
-  pageRef = "apps"
-  weight = 20
-
-[[main]]
   name = "Impressum"
   pageRef = "datenschutz"
   weight = 40
