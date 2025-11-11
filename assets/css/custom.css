@@ -1,10 +1,12 @@
 #the-top {
-    @media (prefers-color-scheme: light) {
-        filter: invert();
-    }
-
     background-image: url(/img/header.png);
     background-size: 300px;
     background-repeat: repeat-x;
     width: 100%;
+}
+
+html.dark {
+    #the-top {
+        filter: invert();
+    }
 }
