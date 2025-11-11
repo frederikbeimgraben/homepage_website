@@ -15,19 +15,14 @@
   pageRef = "posts"
   weight = 10
 
-[[main]]
-  name = "Impressum"
-  pageRef = "datenschutz"
-  weight = 40
-
 # -- Footer Menu --
 # The footer menu is displayed at the bottom of the page before
 # the copyright notice. Configure as per the main menu above.
 
-# [[footer]]
-#   name = "Tags"
-#   pageRef = "tags"
-#   weight = 10
+[[footer]]
+  name = "Impressum"
+  pageRef = "datenschutz"
+  weight = 40
 
 # [[footer]]
 #   name = "Categories"
