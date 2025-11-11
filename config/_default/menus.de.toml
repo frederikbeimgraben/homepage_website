@@ -21,11 +21,6 @@
   weight = 20
 
 [[main]]
-  name = "Card"
-  pageRef = "card"
-  weight = 30
-
-[[main]]
   name = "Impressum"
   pageRef = "datenschutz"
   weight = 40
