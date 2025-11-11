@@ -10,3 +10,7 @@ html.dark {
         filter: invert();
     }
 }
+
+.dark :bg-neutral-800:is(.dark *) {
+    background-color: #000;
+}
