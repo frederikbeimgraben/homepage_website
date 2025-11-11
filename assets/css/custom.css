@@ -111,12 +111,12 @@ html.dark {
     body {
         background-color: #000 !important;
     }
+
+    --tw-prose-lead: #fff !important;
 }
 
 html {
     font-family: "JetBrains Mono";
-}
 
-:root {
-    --tw-prose-lead: #fff !important;
+    --tw-prose-lead: #000 !important;
 }
