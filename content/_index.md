@@ -7,21 +7,11 @@ description: "Frederik Beimgraben's personal homepage"
 
 Ich bin Frederik, ein Techie mit Interesse an Open Source Software, Systemadministration, Web-Entwicklung, Audio und Lautsprecherbau.
 
-## Was du hier findest
-
-- **[Blog](/posts)** - Meine Gedanken und Artikel zu verschiedenen Themen
-- **[Links](/apps)** - Zugang zu verschiedenen Services und Anwendungen
-- **[Visitenkarte](/card)** - Meine digitale Visitenkarte
-- **[Impressum](/datenschutz)** - Rechtliche Informationen
-
-
-Mein Github findest du hier: [frederikbeimgraben](https://github.com/frederikbeimgraben)
-
 ## Kontakt
 
 Du kannst mich über die folgenden Kanäle erreichen:
-- E-Mail: [frederik@beimgraben.net](mailto:frederik@beimgraben.net)
-- LinkedIn: [Frederik Beimgraben](https://www.linkedin.com/in/frederik-beimgraben/)
+E-Mail: [frederik@beimgraben.net](mailto:frederik@beimgraben.net)
+LinkedIn: [Frederik Beimgraben](https://www.linkedin.com/in/frederik-beimgraben/)
 
 ## PGP-Schlüssel
 
