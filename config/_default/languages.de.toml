@@ -14,7 +14,7 @@ title = "beimgraben.net"
 
   [params.author]
     name = "Frederik Beimgraben"
-    image = "img/profile.jpg"
+    image = "img/author.jpg"
     headline = "Welcome to my personal homepage"
     bio = "Ich bin Frederik, ein Techie mit Interesse an Open Source Software, Systemadministration, Web-Entwicklung, Audio und Lautsprecherbau."
     links = [
