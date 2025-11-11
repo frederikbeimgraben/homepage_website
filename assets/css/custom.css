@@ -116,3 +116,9 @@ html.dark {
 html {
     font-family: "JetBrains Mono";
 }
+
+@media (max-width: 640px) {
+    header {
+        padding-top: 2.5rem;
+    }
+}
