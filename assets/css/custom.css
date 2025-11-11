@@ -122,3 +122,8 @@ html {
         padding-top: 2.5rem;
     }
 }
+
+.me-14 {
+    margin-inline-end: 0rem !important;
+    color: rgba(--color-neutral-400, --tw-text-opacity) !important;
+}
