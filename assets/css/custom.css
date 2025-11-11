@@ -127,3 +127,9 @@ html {
     margin-inline-end: 0rem !important;
     color: rgba(--color-neutral-400, --tw-text-opacity) !important;
 }
+
+footer {
+    li {
+        text-align: start !important;
+    }
+}
