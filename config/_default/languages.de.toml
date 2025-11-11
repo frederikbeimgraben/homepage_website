@@ -4,7 +4,7 @@ languageCode = "de-DE"
 languageName = "Deutsch"
 weight = 1
 
-title = "Beimgraben.NET"
+title = "beimgraben.net"
 
 [params]
   dateFormat = "2. January 2006"
@@ -14,7 +14,7 @@ title = "Beimgraben.NET"
 
   [params.author]
     name = "Frederik Beimgraben"
-    image = ""
+    image = "img/profile.jpg"
     headline = "Welcome to my personal homepage"
     bio = "Frederik Beimgraben's personal homepage"
     links = [
