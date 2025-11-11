@@ -116,3 +116,7 @@ html.dark {
 html {
     font-family: "JetBrains Mono";
 }
+
+:root {
+    --tw-prose-lead: #fff !important;
+}
