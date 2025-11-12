@@ -146,11 +146,11 @@ html.var-blue.dark {
         background-color: #1e1839 !important;
     }
 
-    --color-neutral-500: #eee !important;
-    --color-neutral-400: #eee !important;
+    --color-neutral-500: 238, 238, 238;
+    --color-neutral-400: 238, 238, 238;
 
     .prose {
-        --tw-prose-lead: #fff !important;
+        --tw-prose-lead: 238, 238, 238;
     }
 }
 
@@ -173,9 +173,8 @@ html.var-bordeaux:not(.dark) {
             saturate(4687%) hue-rotate(319deg) brightness(78%) contrast(95%);
     }
 
-    color: #641034 !important;
-    --color-neutral-900: #641034 !important;
-    --color-neutral-800: #641034 !important;
+    --color-neutral-900: 100, 16, 52;
+    --color-neutral-800: 100, 16, 52;
 }
 
 html.var-bordeaux.dark {
@@ -183,11 +182,11 @@ html.var-bordeaux.dark {
         background-color: #641034 !important;
     }
 
-    --color-neutral-500: #eee !important;
-    --color-neutral-400: #eee !important;
+    --color-neutral-500: 238, 238, 238;
+    --color-neutral-400: 238, 238, 238;
 
     .prose {
-        --tw-prose-lead: #fff !important;
+        --tw-prose-lead: 238, 238, 238;
     }
 }
 
