@@ -137,13 +137,13 @@ html.var-blue:not(.dark) {
     }
 
     color: #1e1839 !important;
-    --color-neutral-100: 228, 225, 255;
-    --color-neutral-200: 202, 197, 246;
-    --color-neutral-300: 168, 162, 233;
-    --color-neutral-400: 133, 131, 212;
-    --color-neutral-500: 101, 98, 190;
-    --color-neutral-600: 73, 67, 156;
-    --color-neutral-700: 53, 47, 120;
+    --color-neutral-100: 40, 34, 90;
+    --color-neutral-200: 40, 34, 90;
+    --color-neutral-300: 40, 34, 90;
+    --color-neutral-400: 40, 34, 90;
+    --color-neutral-500: 40, 34, 90;
+    --color-neutral-600: 40, 34, 90;
+    --color-neutral-700: 40, 34, 90;
     --color-neutral-800: 40, 34, 90;
     --color-neutral-900: 33, 27, 68;
     --color-neutral-950: 30, 24, 57;
@@ -183,13 +183,13 @@ html.var-bordeaux:not(.dark) {
             saturate(4687%) hue-rotate(319deg) brightness(78%) contrast(95%);
     }
 
-    --color-neutral-100: 255, 225, 236;
-    --color-neutral-200: 249, 192, 210;
-    --color-neutral-300: 242, 155, 182;
-    --color-neutral-400: 224, 104, 142;
-    --color-neutral-500: 201, 68, 115;
-    --color-neutral-600: 169, 46, 91;
-    --color-neutral-700: 138, 33, 70;
+    --color-neutral-100: 118, 25, 60;
+    --color-neutral-200: 118, 25, 60;
+    --color-neutral-300: 118, 25, 60;
+    --color-neutral-400: 118, 25, 60;
+    --color-neutral-500: 118, 25, 60;
+    --color-neutral-600: 118, 25, 60;
+    --color-neutral-700: 118, 25, 60;
     --color-neutral-800: 118, 25, 60;
     --color-neutral-900: 107, 20, 56;
     --color-neutral-950: 100, 16, 52;
