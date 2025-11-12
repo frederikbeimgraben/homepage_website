@@ -149,6 +149,10 @@ html.var-bordeaux.dark {
     body {
         background-color: #641034 !important;
     }
+
+    .prose {
+        --tw-prose-lead: #fff !important;
+    }
 }
 
 @media (max-width: 640px) {
