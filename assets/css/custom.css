@@ -132,6 +132,13 @@ html.var-blue.dark {
     body {
         background-color: #1e1839 !important;
     }
+
+    --color-neutral-500: #eee !important;
+    --color-neutral-400: #eee !important;
+
+    .prose {
+        --tw-prose-lead: #fff !important;
+    }
 }
 
 html.var-bordeaux:not(.dark) {
