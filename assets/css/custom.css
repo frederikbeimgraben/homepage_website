@@ -103,7 +103,7 @@
     width: 100%;
 }
 
-html.dark {
+html.dark:not(.var-blue .var-bordeaux) {
     #the-top {
         filter: invert();
     }
@@ -115,6 +115,28 @@ html.dark {
 
 html {
     font-family: "JetBrains Mono";
+}
+
+html.var-blue.dark {
+    #the-top {
+        filter: brightness(0) saturate(100%) invert(8%) sepia(75%)
+            saturate(1244%) hue-rotate(227deg) brightness(91%) contrast(95%);
+    }
+
+    body {
+        background-color: #1e1839 !important;
+    }
+}
+
+html.var-bordeaux.dark {
+    #the-top {
+        filter: brightness(0) saturate(100%) invert(10%) sepia(54%)
+            saturate(4687%) hue-rotate(319deg) brightness(78%) contrast(95%);
+    }
+
+    body {
+        background-color: #641034 !important;
+    }
 }
 
 @media (max-width: 640px) {
