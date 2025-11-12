@@ -118,15 +118,15 @@ html {
 }
 
 html.var-blue {
-    --color-primary-100: 121, 115, 148;
-    --color-primary-200: 108, 102, 138;
-    --color-primary-300: 96, 89, 128;
-    --color-primary-400: 85, 77, 117;
-    --color-primary-500: 74, 66, 107;
-    --color-primary-600: 64, 56, 97;
-    --color-primary-700: 54, 47, 87;
-    --color-primary-800: 45, 38, 77;
-    --color-primary-900: 37, 30, 66;
+    --color-primary-100: 228, 225, 255;
+    --color-primary-200: 202, 197, 246;
+    --color-primary-300: 168, 162, 233;
+    --color-primary-400: 133, 131, 212;
+    --color-primary-500: 101, 98, 190;
+    --color-primary-600: 73, 67, 156;
+    --color-primary-700: 53, 47, 120;
+    --color-primary-800: 40, 34, 90;
+    --color-primary-900: 33, 27, 68;
     --color-primary-950: 30, 24, 57;
 }
 
@@ -157,15 +157,15 @@ html.var-blue.dark {
 }
 
 html.var-bordeaux {
-    --color-primary-100: 190, 90, 139;
-    --color-primary-200: 180, 81, 128;
-    --color-primary-300: 170, 72, 117;
-    --color-primary-400: 160, 63, 106;
-    --color-primary-500: 150, 54, 95;
-    --color-primary-600: 140, 45, 86;
-    --color-primary-700: 130, 36, 77;
-    --color-primary-800: 120, 29, 68;
-    --color-primary-900: 110, 22, 60;
+    --color-primary-100: 255, 225, 236;
+    --color-primary-200: 249, 192, 210;
+    --color-primary-300: 242, 155, 182;
+    --color-primary-400: 224, 104, 142;
+    --color-primary-500: 201, 68, 115;
+    --color-primary-600: 169, 46, 91;
+    --color-primary-700: 138, 33, 70;
+    --color-primary-800: 118, 25, 60;
+    --color-primary-900: 107, 20, 56;
     --color-primary-950: 100, 16, 52;
 }
 
