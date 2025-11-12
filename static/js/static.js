@@ -1,4 +1,3 @@
-// custom.js
 function updateHtmlClassFromHash() {
   const html = document.documentElement;
   html.classList.remove("var-blue", "var-bordeaux");
@@ -13,16 +12,32 @@ function updateHtmlClassFromHash() {
   updateInternalLinksWithHash(location.hash);
 }
 
-// Append current hash to all internal links
 function updateInternalLinksWithHash(currentHash) {
   if (!currentHash) return;
 
-  // Select all anchor tags with href starting with "/"
-  const links = document.querySelectorAll('a[href^="/"]');
+  const siteOrigin = location.origin;
+
+  // Select all anchor tags with href attribute
+  const links = document.querySelectorAll("a[href]");
 
   links.forEach((link) => {
-    const href = link.getAttribute("href").split("#")[0]; // Remove existing hash part if any
-    link.setAttribute("href", href + currentHash);
+    const href = link.getAttribute("href");
+
+    // Ignore if it already has the current hash to avoid duplication
+    if (href.includes(currentHash)) return;
+
+    try {
+      const url = new URL(href, siteOrigin);
+
+      // Only update links that have the same origin as the site
+      if (url.origin === siteOrigin) {
+        // Remove any existing hash before appending current hash
+        const cleanPath = url.pathname + url.search;
+        link.setAttribute("href", cleanPath + currentHash);
+      }
+    } catch {
+      // Skip invalid URLs (e.g., mailto:, tel:)
+    }
   });
 }
 
