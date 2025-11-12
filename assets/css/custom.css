@@ -117,6 +117,19 @@ html {
     font-family: "JetBrains Mono";
 }
 
+html.var-blue {
+    --color-primary-100: #938fa8 !important;
+    --color-primary-200: #85809e !important;
+    --color-primary-300: #787294 !important;
+    --color-primary-400: #6c658a !important;
+    --color-primary-500: #605880 !important;
+    --color-primary-600: #544c75 !important;
+    --color-primary-700: #49416b !important;
+    --color-primary-800: #362e57 !important;
+    --color-primary-900: #251e42 !important;
+    --color-primary-950: #1e1839 !important;
+}
+
 html.var-blue:not(.dark) {
     #the-top {
         filter: brightness(0) saturate(100%) invert(8%) sepia(75%)
@@ -139,6 +152,19 @@ html.var-blue.dark {
     .prose {
         --tw-prose-lead: #fff !important;
     }
+}
+
+html.var-bordeaux {
+    --color-primary-100: #bf638b !important;
+    --color-primary-200: #b5577f !important;
+    --color-primary-300: #ab4b74 !important;
+    --color-primary-400: #a14069 !important;
+    --color-primary-500: #96365f !important;
+    --color-primary-600: #8c2d55 !important;
+    --color-primary-700: #82244c !important;
+    --color-primary-800: #781d43 !important;
+    --color-primary-900: #6e163b !important;
+    --color-primary-950: #641034 !important;
 }
 
 html.var-bordeaux:not(.dark) {
