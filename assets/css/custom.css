@@ -124,6 +124,8 @@ html.var-blue:not(.dark) {
     }
 
     color: #1e1839 !important;
+    --color-neutral-900: #1e1839 !important;
+    --color-neutral-800: #1e1839 !important;
 }
 
 html.var-blue.dark {
@@ -139,6 +141,8 @@ html.var-bordeaux:not(.dark) {
     }
 
     color: #641034 !important;
+    --color-neutral-900: #641034 !important;
+    --color-neutral-800: #641034 !important;
 }
 
 html.var-bordeaux.dark {
