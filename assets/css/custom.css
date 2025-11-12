@@ -151,6 +151,7 @@ html.var-bordeaux.dark {
     }
 
     --color-neutral-500: #eee !important;
+    --color-neutral-400: #eee !important;
 
     .prose {
         --tw-prose-lead: #fff !important;
