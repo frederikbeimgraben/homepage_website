@@ -118,16 +118,16 @@ html {
 }
 
 html.var-blue {
-    --color-primary-100: #938fa8 !important;
-    --color-primary-200: #85809e !important;
-    --color-primary-300: #787294 !important;
-    --color-primary-400: #6c658a !important;
-    --color-primary-500: #605880 !important;
-    --color-primary-600: #544c75 !important;
-    --color-primary-700: #49416b !important;
-    --color-primary-800: #362e57 !important;
-    --color-primary-900: #251e42 !important;
-    --color-primary-950: #1e1839 !important;
+    --color-primary-100: from #938fa8 r g b !important;
+    --color-primary-200: from #85809e r g b !important;
+    --color-primary-300: from #787294 r g b !important;
+    --color-primary-400: from #6c658a r g b !important;
+    --color-primary-500: from #605880 r g b !important;
+    --color-primary-600: from #544c75 r g b !important;
+    --color-primary-700: from #49416b r g b !important;
+    --color-primary-800: from #362e57 r g b !important;
+    --color-primary-900: from #251e42 r g b !important;
+    --color-primary-950: from #1e1839 r g b !important;
 }
 
 html.var-blue:not(.dark) {
@@ -155,16 +155,16 @@ html.var-blue.dark {
 }
 
 html.var-bordeaux {
-    --color-primary-100: #bf638b !important;
-    --color-primary-200: #b5577f !important;
-    --color-primary-300: #ab4b74 !important;
-    --color-primary-400: #a14069 !important;
-    --color-primary-500: #96365f !important;
-    --color-primary-600: #8c2d55 !important;
-    --color-primary-700: #82244c !important;
-    --color-primary-800: #781d43 !important;
-    --color-primary-900: #6e163b !important;
-    --color-primary-950: #641034 !important;
+    --color-primary-100: from #bf638b r g b !important;
+    --color-primary-200: from #b5577f r g b !important;
+    --color-primary-300: from #ab4b74 r g b !important;
+    --color-primary-400: from #a14069 r g b !important;
+    --color-primary-500: from #96365f r g b !important;
+    --color-primary-600: from #8c2d55 r g b !important;
+    --color-primary-700: from #82244c r g b !important;
+    --color-primary-800: from #781d43 r g b !important;
+    --color-primary-900: from #6e163b r g b !important;
+    --color-primary-950: from #641034 r g b !important;
 }
 
 html.var-bordeaux:not(.dark) {
