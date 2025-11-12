@@ -103,7 +103,7 @@
     width: 100%;
 }
 
-html.dark:not(.var-blue .var-bordeaux) {
+html.dark {
     #the-top {
         filter: invert();
     }
