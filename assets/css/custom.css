@@ -146,8 +146,10 @@ html.var-blue.dark {
         background-color: #1e1839 !important;
     }
 
-    --color-neutral-500: 238, 238, 238;
-    --color-neutral-400: 238, 238, 238;
+    --color-neutral-700: 240, 240, 240;
+    --color-neutral-600: 230, 230, 230;
+    --color-neutral-500: 220, 220, 220;
+    --color-neutral-400: 210, 210, 210;
 
     .prose {
         --tw-prose-lead: 238, 238, 238;
@@ -182,8 +184,10 @@ html.var-bordeaux.dark {
         background-color: #641034 !important;
     }
 
-    --color-neutral-500: 238, 238, 238;
-    --color-neutral-400: 238, 238, 238;
+    --color-neutral-700: 240, 240, 240;
+    --color-neutral-600: 230, 230, 230;
+    --color-neutral-500: 220, 220, 220;
+    --color-neutral-400: 210, 210, 210;
 
     .prose {
         --tw-prose-lead: 238, 238, 238;
