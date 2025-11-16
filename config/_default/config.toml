@@ -16,6 +16,7 @@ summaryLength = 0
 
 [params.plausible]
   enable = true
-  domain = "plausible.reutlingen.university"
+  domain = "beimgraben.net"
+  selfhosted_domain = "plausible.reutlingen.university"
   outbound_link = true
   hash_based_routing = true
