@@ -44,16 +44,3 @@ function updateInternalLinksWithHash(currentHash) {
 // Run on page load and on hash changes
 window.addEventListener("DOMContentLoaded", updateHtmlClassFromHash);
 window.addEventListener("hashchange", updateHtmlClassFromHash);
-
-const script = document.createElement("script");
-var scriptUrl = "https://plausible.reutlingen.university/js/script.js";
-
-script.src = scriptUrl;
-script.onload = () => {
-  console.log(`${scriptUrl} loaded successfully!`);
-  // You can call a callback function here if needed
-};
-script.onerror = () => {
-  console.error(`Error loading ${scriptUrl}`);
-};
-document.head.appendChild(script);

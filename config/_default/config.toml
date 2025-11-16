@@ -13,3 +13,9 @@ summaryLength = 0
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+[params.plausible]
+  enable = true
+  domain = "plausible.reutlingen.university"
+  outbound_link = true
+  hash_based_routing = true
