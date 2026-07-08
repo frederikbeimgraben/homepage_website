@@ -63,6 +63,9 @@
         shellHook = ''
           echo "homepage_website dev shell — hugo $(hugo version | cut -d' ' -f2), go"
           echo "Serve locally with: hugo server -D"
+          # Drop into the user's interactive zsh (loads ~/.zshrc); guarded so
+          # `nix develop -c <cmd>` and non-interactive uses still run in bash.
+          [[ $- == *i* ]] && exec ${pkgs.zsh}/bin/zsh
         '';
       };
     };
