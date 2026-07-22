@@ -194,6 +194,33 @@ html.var-bordeaux.dark {
     }
 }
 
+.logo-link {
+    display: inline-flex;
+    position: relative;
+}
+
+/* Underline only the text band of the logo: the wordmark spans 7.5%–92.5%
+   of the canvas (fiducial columns excluded), baseline sits at ~70% height. */
+.logo-link::after {
+    content: "";
+    position: absolute;
+    left: 7.5%;
+    right: 7.5%;
+    top: 73%;
+    height: 2px;
+    background: transparent;
+}
+
+.logo-link:hover::after {
+    background: rgb(var(--color-primary-500));
+}
+
+.logo-link img {
+    height: 2.4rem;
+    width: auto;
+    max-width: none;
+}
+
 @media (max-width: 640px) {
     .py-6 {
         padding-top: 2.5rem;

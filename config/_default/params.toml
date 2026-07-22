@@ -19,9 +19,9 @@ fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom
-  logo = ""
-  logoText = "beimgraben.net"
-  showTitle = true
+  logo = "img/logo-header-light.png"
+  logoDark = "img/logo-header-dark.png"
+  showTitle = false
 
 [footer]
   showCopyright = true

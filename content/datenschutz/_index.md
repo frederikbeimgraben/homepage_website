@@ -1,6 +1,7 @@
 ---
 title: "Datenschutz und Impressum"
 date: 2023-09-14T21:39:51+02:00
+aliases: ["/impressum/"]
 draft: false
 toc: false
 tags: ["dsgvo"]

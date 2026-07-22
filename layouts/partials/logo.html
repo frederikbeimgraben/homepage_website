@@ -1,0 +1,32 @@
+{{- /* Site override of Congo's logo partial: no fixed width/height
+     attributes (sizing lives in custom.css .logo-link) and a hover
+     underline like the old text header, drawn as a border since this
+     is an image. */ -}}
+{{- if .Site.Params.header.logo }}
+  {{- $logo := resources.Get .Site.Params.header.logo }}
+  {{- $logo_dark := resources.Get .Site.Params.header.logoDark }}
+  {{- if $logo }}
+    <a href="{{ "" | relLangURL }}" class="logo-link mr-2">
+      <img
+        src="{{ $logo.Permalink }}"
+        class="object-scale-down object-left {{ if $logo_dark }}dark:hidden flex{{ end }}"
+        alt="{{ .Site.Title }}"
+      />
+      {{- if $logo_dark }}
+        <img
+          src="{{ $logo_dark.Permalink }}"
+          class="hidden object-scale-down object-left dark:flex"
+          alt="{{ .Site.Title }}"
+        />
+      {{- end }}
+    </a>
+  {{- end }}
+{{- end }}
+{{- if .Site.Params.header.showTitle | default true }}
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="{{ "" | relLangURL }}"
+    >{{ .Site.Title | markdownify | emojify }}</a
+  >
+{{- end }}
