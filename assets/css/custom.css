@@ -85,9 +85,29 @@
    every browser request a file that answers 404; the synthesised oblique that
    the 400 upright face produces is what the site showed anyway. */
 
+:root {
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
 html {
-  font-family:
-    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
+}
+
+/* Tailwind's preflight sets its own mono stack directly on these elements, and
+   Congo sets one on `.copy-button`. Both beat the inherited value from <html>,
+   so code kept rendering in the system font while the rest of the site did not.
+   Restate the stack for each. */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
+.copy-button {
+  font-family: var(--font-mono);
 }
 
 /* --------------------------------------------------------------------------
