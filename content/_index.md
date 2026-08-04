@@ -1,6 +1,6 @@
 ---
 title: "beimgraben.net"
-description: "Frederik Beimgraben's personal homepage"
+description: "Persönliche Seite von Frederik Beimgraben — Notizen zu Linux, selbstgehosteten Diensten und eigenen Projekten."
 ---
 
 
