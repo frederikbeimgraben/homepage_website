@@ -20,7 +20,9 @@ summaryLength = 30
 [params.plausible]
   enable = true
   domain = "beimgraben.net"
-  selfhosted_domain = "plausible.reutlingen.university"
+  # Own instance. The module builds the script URL from this:
+  # https://<selfhosted_domain>/js/script.outbound-links.js
+  selfhosted_domain = "plausible.beimgraben.net"
   outbound_link = true
   # The theme selection no longer lives in the URL fragment, so Plausible must
   # not split page views on it.
