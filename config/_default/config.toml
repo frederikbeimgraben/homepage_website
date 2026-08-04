@@ -7,7 +7,9 @@
 baseURL = "https://beimgraben.net/"
 defaultContentLanguage = "de"
 enableRobotsTXT = true
-summaryLength = 0
+# Congo falls back to .Summary for the meta description of a page that sets no
+# `description`. At 0 that summary is empty, which shipped an empty description.
+summaryLength = 30
 
 [pagination]
   pagerSize = 10

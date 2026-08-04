@@ -6,6 +6,21 @@
   so the theme can be updated without a merge.
 */ -}}
 
+{{- /* The whole site is set in JetBrains Mono, but the browser only finds the
+       files after it parses the CSS, so the first paint uses the fallback and
+       then reflows. Preload the two weights every page shows above the fold:
+       400 for body text and 800 for the heading. `crossorigin` is required
+       even for a same-origin font, because fonts load in CORS mode. */ -}}
+{{- range slice "JetBrainsMono-Regular.woff2" "JetBrainsMono-ExtraBold.woff2" }}
+  <link
+    rel="preload"
+    href="{{ printf "/fonts/%s" . | relURL }}"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+{{- end }}
+
 {{- /* The colour variant must be on <html> before the first paint. Load the
        script without `defer`, the same way Congo loads `appearance.js`. */ -}}
 {{- $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" -}}

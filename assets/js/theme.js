@@ -110,6 +110,33 @@
     apply(DEFAULT_VARIANT);
   }
 
+  /* Congo's appearance.js follows the operating system on every
+     prefers-color-scheme change, even when the reader chose light or dark by
+     hand. This listener is registered after Congo's, so it runs second and puts
+     the stored choice back. With no stored choice, the system still wins. */
+  if (window.matchMedia) {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", function () {
+        var chosen = null;
+        try {
+          chosen = localStorage.getItem("appearance");
+        } catch (e) {
+          return;
+        }
+        if (chosen === "dark") {
+          root.classList.add("dark");
+        } else if (chosen === "light") {
+          root.classList.remove("dark");
+        } else {
+          return;
+        }
+        if (typeof window.setThemeColor === "function") {
+          window.setThemeColor();
+        }
+      });
+  }
+
   /* Covers a "#blue" link followed from the page the reader is already on:
      the browser fires hashchange instead of loading the document again. */
   window.addEventListener("hashchange", function () {

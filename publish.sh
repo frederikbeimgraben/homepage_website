@@ -40,7 +40,9 @@ git push
 # stale public/ would resurrect them on the server via rsync.
 chmod -R u+w public 2>/dev/null || true
 rm -rf public
-nix develop --command hugo --gc
+# --minify to match the Nix package build. Without it the deployed site was
+# the unminified one, about 5 KB more HTML per page.
+nix develop --command hugo --gc --minify
 cp google*.html public/
 
 # rsync runs with --delete against the live webroot. If the build gave no
