@@ -2,7 +2,8 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/configuration/
 
-theme = "github.com/jpanther/congo/v2"
+# The theme comes in as a Hugo Module (see module.toml). Do not also set
+# `theme` here: Hugo then imports Congo twice and prints a build warning.
 baseURL = "https://beimgraben.net/"
 defaultContentLanguage = "de"
 enableRobotsTXT = true
@@ -19,4 +20,8 @@ summaryLength = 0
   domain = "beimgraben.net"
   selfhosted_domain = "plausible.reutlingen.university"
   outbound_link = true
-  hash_based_routing = true
+  # The theme selection no longer lives in the URL fragment, so Plausible must
+  # not split page views on it.
+  hash_based_routing = false
+  # Silences the module's "leave a star on GitHub" build warning.
+  gitstar = false

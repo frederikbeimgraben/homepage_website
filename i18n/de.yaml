@@ -1,0 +1,6 @@
+# Site strings. Congo supplies the rest in its own i18n/de.yaml.
+variant:
+  switch: "Farbschema wechseln"
+  to_blue: "Zum blauen Farbschema wechseln"
+  to_bordeaux: "Zum Farbschema Bordeaux wechseln"
+  to_violet: "Zum violetten Farbschema wechseln"

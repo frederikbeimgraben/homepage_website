@@ -1,239 +1,303 @@
-/* Fonts */
+/* ==========================================================================
+   Site styles on top of Congo.
+
+   Load order in the bundle is: Congo scheme -> Congo main.css -> this file.
+   Congo builds every colour from `--color-*` tokens that hold bare "r, g, b"
+   triples, so a variant only has to redefine tokens. Avoid hard-coded colours
+   and `!important` overrides on Congo's own classes.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fonts
+   -------------------------------------------------------------------------- */
+
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Bold-Italic.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Bold-Italic.woff") format("woff");
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-Regular.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Bold.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Bold.woff") format("woff");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-Medium.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-ExtraBold-Italic.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-ExtraBold-Italic.woff") format("woff");
-    font-weight: 800;
-    font-style: italic;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-Medium-Italic.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-Medium-Italic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-ExtraBold.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-ExtraBold.woff") format("woff");
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-Bold.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Italic.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Italic.woff") format("woff");
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-Bold-Italic.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-Bold-Italic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Medium-Italic.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Medium-Italic.woff") format("woff");
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-ExtraBold.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Medium.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Medium.woff") format("woff");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: "JetBrains Mono";
+  src:
+    url("/fonts/JetBrainsMono-ExtraBold-Italic.woff2") format("woff2"),
+    url("/fonts/JetBrainsMono-ExtraBold-Italic.woff") format("woff");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
 }
 
-@font-face {
-    font-family: "JetBrains Mono";
-    src:
-        url("/fonts/JetBrainsMono-Regular.woff2") format("woff2"),
-        url("/fonts/JetBrainsMono-Regular.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* There is no upright italic at weight 400 in static/fonts. Declaring one made
+   every browser request a file that answers 404; the synthesised oblique that
+   the 400 upright face produces is what the site showed anyway. */
+
+html {
+  font-family:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* Styles */
-#the-top {
-    background-image: url(/img/header.png);
-    background-size: 300px;
-    background-repeat: repeat-x;
-    width: 100%;
+/* --------------------------------------------------------------------------
+   Colour variants
+
+   `data-theme` on <html> picks the palette. `assets/js/theme.js` sets it before
+   the first paint and keeps it in localStorage.
+
+     (no attribute)        Blau - the site default
+     data-theme="bordeaux" Bordeaux
+     data-theme="violet"   Violett, Congo's own scheme
+
+   Blau is the default in CSS rather than in JavaScript, so the site is already
+   blue on the first paint and stays blue if scripts never run.
+
+   Light and dark stay independent: Congo owns the `.dark` class, and
+   `defaultAppearance = "dark"` in params.toml makes dark the default.
+
+   Congo paints the page with `--color-neutral` in light mode and with
+   `--color-neutral-800` in dark mode, so a variant sets its background through
+   those tokens instead of forcing `body { background-color }`.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Colour of the pixel skyline at the top of the page. */
+  --color-skyline: 0, 0, 0;
 }
 
 html.dark {
-    #the-top {
-        filter: invert();
-    }
-
-    body {
-        background-color: #000 !important;
-    }
+  --color-skyline: 255, 255, 255;
+  /* The site uses pure black rather than Congo's dark grey. */
+  --color-neutral-800: 0, 0, 0;
 }
 
-html {
-    font-family: "JetBrains Mono";
+/* -- Blau (default) -------------------------------------------------------- */
+
+html:not([data-theme]) {
+  --color-primary-50: 242, 241, 255;
+  --color-primary-100: 228, 225, 255;
+  --color-primary-200: 202, 197, 246;
+  --color-primary-300: 168, 162, 233;
+  --color-primary-400: 133, 131, 212;
+  --color-primary-500: 101, 98, 190;
+  --color-primary-600: 73, 67, 156;
+  --color-primary-700: 53, 47, 120;
+  --color-primary-800: 40, 34, 90;
+  --color-primary-900: 33, 27, 68;
+  --color-primary-950: 30, 24, 57;
 }
 
-html.var-blue {
-    --color-primary-100: 228, 225, 255;
-    --color-primary-200: 202, 197, 246;
-    --color-primary-300: 168, 162, 233;
-    --color-primary-400: 133, 131, 212;
-    --color-primary-500: 101, 98, 190;
-    --color-primary-600: 73, 67, 156;
-    --color-primary-700: 53, 47, 120;
-    --color-primary-800: 40, 34, 90;
-    --color-primary-900: 33, 27, 68;
-    --color-primary-950: 30, 24, 57;
+html:not([data-theme]):not(.dark) {
+  --color-skyline: 30, 24, 57;
+  --color-neutral-50: 248, 247, 253;
+  --color-neutral-100: 237, 235, 248;
+  --color-neutral-200: 219, 215, 240;
+  --color-neutral-300: 189, 183, 222;
+  --color-neutral-400: 143, 135, 186;
+  --color-neutral-500: 101, 94, 150;
+  --color-neutral-600: 73, 67, 122;
+  --color-neutral-700: 55, 49, 99;
+  --color-neutral-800: 40, 34, 90;
+  --color-neutral-900: 33, 27, 68;
+  --color-neutral-950: 30, 24, 57;
 }
 
-html.var-blue:not(.dark) {
-    #the-top {
-        filter: brightness(0) saturate(100%) invert(8%) sepia(75%)
-            saturate(1244%) hue-rotate(227deg) brightness(91%) contrast(95%);
-    }
-
-    color: #1e1839 !important;
-    --color-neutral-100: 40, 34, 90;
-    --color-neutral-200: 40, 34, 90;
-    --color-neutral-300: 40, 34, 90;
-    --color-neutral-400: 40, 34, 90;
-    --color-neutral-500: 40, 34, 90;
-    --color-neutral-600: 40, 34, 90;
-    --color-neutral-700: 40, 34, 90;
-    --color-neutral-800: 40, 34, 90;
-    --color-neutral-900: 33, 27, 68;
-    --color-neutral-950: 30, 24, 57;
+html:not([data-theme]).dark {
+  --color-neutral-50: 246, 245, 252;
+  --color-neutral-100: 232, 229, 247;
+  --color-neutral-200: 214, 210, 238;
+  --color-neutral-300: 196, 191, 228;
+  --color-neutral-400: 162, 155, 205;
+  --color-neutral-500: 130, 123, 178;
+  --color-neutral-600: 95, 88, 145;
+  --color-neutral-700: 58, 50, 110;
+  --color-neutral-800: 30, 24, 57;
+  --color-neutral-900: 22, 17, 44;
+  --color-neutral-950: 15, 12, 30;
 }
 
-html.var-blue.dark {
-    body {
-        background-color: #1e1839 !important;
-    }
+/* -- Violett --------------------------------------------------------------- */
 
-    --color-neutral-700: 240, 240, 240;
-    --color-neutral-600: 230, 230, 230;
-    --color-neutral-500: 220, 220, 220;
-    --color-neutral-400: 210, 210, 210;
+/* Congo's own scheme. Every token already comes from `css/schemes/congo.css`
+   and the two rules above, so this variant needs no declarations of its own. */
 
-    .prose {
-        --tw-prose-lead: 238, 238, 238;
-    }
+/* -- Bordeaux -------------------------------------------------------------- */
+
+html[data-theme="bordeaux"] {
+  --color-primary-50: 255, 241, 246;
+  --color-primary-100: 255, 225, 236;
+  --color-primary-200: 249, 192, 210;
+  --color-primary-300: 242, 155, 182;
+  --color-primary-400: 224, 104, 142;
+  --color-primary-500: 201, 68, 115;
+  --color-primary-600: 169, 46, 91;
+  --color-primary-700: 138, 33, 70;
+  --color-primary-800: 118, 25, 60;
+  --color-primary-900: 107, 20, 56;
+  --color-primary-950: 100, 16, 52;
 }
 
-html.var-bordeaux {
-    --color-primary-100: 255, 225, 236;
-    --color-primary-200: 249, 192, 210;
-    --color-primary-300: 242, 155, 182;
-    --color-primary-400: 224, 104, 142;
-    --color-primary-500: 201, 68, 115;
-    --color-primary-600: 169, 46, 91;
-    --color-primary-700: 138, 33, 70;
-    --color-primary-800: 118, 25, 60;
-    --color-primary-900: 107, 20, 56;
-    --color-primary-950: 100, 16, 52;
+html[data-theme="bordeaux"]:not(.dark) {
+  --color-skyline: 100, 16, 52;
+  --color-neutral-50: 253, 247, 249;
+  --color-neutral-100: 250, 235, 240;
+  --color-neutral-200: 242, 214, 224;
+  --color-neutral-300: 229, 178, 197;
+  --color-neutral-400: 205, 126, 156;
+  --color-neutral-500: 175, 79, 116;
+  --color-neutral-600: 146, 48, 86;
+  --color-neutral-700: 130, 35, 71;
+  --color-neutral-800: 118, 25, 60;
+  --color-neutral-900: 107, 20, 56;
+  --color-neutral-950: 100, 16, 52;
 }
 
-html.var-bordeaux:not(.dark) {
-    #the-top {
-        filter: brightness(0) saturate(100%) invert(10%) sepia(54%)
-            saturate(4687%) hue-rotate(319deg) brightness(78%) contrast(95%);
-    }
-
-    --color-neutral-100: 118, 25, 60;
-    --color-neutral-200: 118, 25, 60;
-    --color-neutral-300: 118, 25, 60;
-    --color-neutral-400: 118, 25, 60;
-    --color-neutral-500: 118, 25, 60;
-    --color-neutral-600: 118, 25, 60;
-    --color-neutral-700: 118, 25, 60;
-    --color-neutral-800: 118, 25, 60;
-    --color-neutral-900: 107, 20, 56;
-    --color-neutral-950: 100, 16, 52;
+html[data-theme="bordeaux"].dark {
+  --color-neutral-50: 253, 246, 249;
+  --color-neutral-100: 250, 233, 239;
+  --color-neutral-200: 245, 213, 225;
+  --color-neutral-300: 237, 191, 208;
+  --color-neutral-400: 219, 154, 179;
+  --color-neutral-500: 198, 113, 145;
+  --color-neutral-600: 170, 76, 112;
+  --color-neutral-700: 138, 45, 81;
+  --color-neutral-800: 100, 16, 52;
+  --color-neutral-900: 78, 11, 40;
+  --color-neutral-950: 56, 8, 29;
 }
 
-html.var-bordeaux.dark {
-    body {
-        background-color: #641034 !important;
-    }
+/* --------------------------------------------------------------------------
+   Pixel skyline
 
-    --color-neutral-700: 240, 240, 240;
-    --color-neutral-600: 230, 230, 230;
-    --color-neutral-500: 220, 220, 220;
-    --color-neutral-400: 210, 210, 210;
+   `#the-top` is Congo's skip-to-content anchor. The strip goes on a
+   pseudo-element, because masking `#the-top` itself would also clip the link
+   inside it, which keyboard users need on focus.
 
-    .prose {
-        --tw-prose-lead: 238, 238, 238;
-    }
+   header.png is pure black with an alpha channel, so masking a flat colour
+   recolours it for any variant. The previous rule inverted the image in dark
+   mode and needed a hand-tuned hue-rotate() filter chain per variant.
+   -------------------------------------------------------------------------- */
+
+#the-top {
+  width: 100%;
 }
 
+#the-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(var(--color-skyline));
+  -webkit-mask-image: url("/img/header.png");
+  mask-image: url("/img/header.png");
+  -webkit-mask-size: 300px auto;
+  mask-size: 300px auto;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: top left;
+  mask-position: top left;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+/* Underline only the text band of the logo: the wordmark spans 7.5%-92.5% of
+   the canvas (fiducial columns excluded), baseline sits at ~70% height. */
 .logo-link {
-    display: inline-flex;
-    position: relative;
+  display: inline-flex;
+  position: relative;
 }
 
-/* Underline only the text band of the logo: the wordmark spans 7.5%–92.5%
-   of the canvas (fiducial columns excluded), baseline sits at ~70% height. */
 .logo-link::after {
-    content: "";
-    position: absolute;
-    left: 7.5%;
-    right: 7.5%;
-    top: 73%;
-    height: 2px;
-    background: transparent;
+  content: "";
+  position: absolute;
+  left: 7.5%;
+  right: 7.5%;
+  top: 73%;
+  height: 2px;
+  background-color: transparent;
 }
 
 .logo-link:hover::after {
-    background: rgb(var(--color-primary-500));
+  background-color: rgb(var(--color-primary-500));
 }
 
 .logo-link img {
-    height: 2.4rem;
-    width: auto;
-    max-width: none;
+  height: 2.4rem;
+  width: auto;
+  max-width: none;
 }
 
+/* Below Congo's `sm` breakpoint the header needs room for the skyline strip.
+   The selector carries Congo's own utility class because a bare `header` has
+   lower specificity than the `.py-6` it must override. */
 @media (max-width: 640px) {
-    .py-6 {
-        padding-top: 2.5rem;
-    }
+  header.py-6 {
+    padding-top: 2.5rem;
+  }
 }
 
-.me-14 {
-    margin-inline-end: 0rem !important;
-    color: rgba(--color-neutral-400, --tw-text-opacity) !important;
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+/* Congo right-aligns the footer menu and reserves a gutter for the
+   scroll-to-top button. This site wants neither. */
+footer nav li.text-end {
+  text-align: start;
 }
 
-footer {
-    li {
-        text-align: start !important;
-    }
+footer .me-14 {
+  margin-inline-end: 0;
 }

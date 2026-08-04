@@ -1,0 +1,46 @@
+{{- /*
+  Site additions to Congo's <head>.
+
+  This partial replaces a full copy of Congo's `head.html` that existed only to
+  append two lines. Congo calls `extend-head.html` at the end of its own head,
+  so the theme can be updated without a merge.
+*/ -}}
+
+{{- /* The colour variant must be on <html> before the first paint. Load the
+       script without `defer`, the same way Congo loads `appearance.js`. */ -}}
+{{- $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" -}}
+{{- $theme := resources.Get "js/theme.js" | resources.Minify | resources.Fingerprint $algorithm -}}
+<script
+  type="text/javascript"
+  src="{{ $theme.Permalink }}"
+  integrity="{{ $theme.Data.Integrity }}"
+></script>
+
+{{- /* Markup for the colour-variant button. `theme.js` moves it next to the
+       light/dark switcher in the footer. Keeping it in a <template> renders the
+       icon and the translated labels server-side, and leaves no dead control
+       for readers without JavaScript.
+
+       The classes mirror Congo's own appearance switcher so the two buttons
+       match. */ -}}
+<template id="theme-variant-template">
+  <div
+    class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+  >
+    <button
+      id="theme-variant-switcher"
+      type="button"
+      title="{{ i18n "variant.switch" }}"
+      aria-label="{{ i18n "variant.switch" }}"
+      data-label-blue="{{ i18n "variant.to_blue" }}"
+      data-label-bordeaux="{{ i18n "variant.to_bordeaux" }}"
+      data-label-violet="{{ i18n "variant.to_violet" }}"
+    >
+      <div class="flex h-12 w-12 items-center justify-center">
+        {{- partial "icon.html" "palette" -}}
+      </div>
+    </button>
+  </div>
+</template>
+
+{{- partial "plausible_head.html" . -}}

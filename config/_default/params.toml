@@ -8,6 +8,9 @@
 colorScheme = "congo"
 defaultAppearance = "dark" # valid options: light or dark
 autoSwitchAppearance = true
+# Browser UI colour before appearance.js runs. Matches the dark Blau
+# background, which is what a first-time visitor gets.
+defaultThemeColor = "#1e1839"
 
 enableSearch = true
 enableCodeCopy = true
