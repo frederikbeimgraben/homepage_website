@@ -1,0 +1,174 @@
+- generic [active] [ref=e1]:
+  - link "↓Zum Hauptinhalt springen" [ref=e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e4]:
+    - navigation [ref=e5]:
+      - link "beimgraben.net" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "beimgraben.net" [ref=e8]
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Blog" [ref=e11] [cursor=pointer]:
+            - /url: /posts/
+        - listitem [ref=e12]:
+          - button "Suche (/)" [ref=e13] [cursor=pointer]:
+            - img [ref=e16]
+  - generic [ref=e18]:
+    - main [ref=e19]:
+      - article [ref=e20]:
+        - generic [ref=e21]:
+          - list [ref=e22]:
+            - listitem [ref=e23]:
+              - link "Posts" [ref=e24] [cursor=pointer]:
+                - /url: https://beimgraben.net/posts/
+              - text: /
+          - 'heading "GANGWAY: Building an Interactive LED Installation with Person Tracking" [level=1] [ref=e25]'
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - time [ref=e28]: 18. Januar 2026
+              - generic [ref=e29]: ·
+              - generic "Lesezeit" [ref=e30]: 2 min
+            - generic [ref=e31]:
+              - link "Raspberry-Pi" [ref=e32] [cursor=pointer]:
+                - /url: https://beimgraben.net/tags/raspberry-pi/
+              - link "Python" [ref=e33] [cursor=pointer]:
+                - /url: https://beimgraben.net/tags/python/
+              - link "Leds" [ref=e34] [cursor=pointer]:
+                - /url: https://beimgraben.net/tags/leds/
+              - link "Projection-Mapping" [ref=e35] [cursor=pointer]:
+                - /url: https://beimgraben.net/tags/projection-mapping/
+              - link "Xovis" [ref=e36] [cursor=pointer]:
+                - /url: https://beimgraben.net/tags/xovis/
+        - generic [ref=e37]:
+          - group [ref=e40]:
+            - generic "Inhaltsverzeichnis" [ref=e41] [cursor=pointer]
+            - navigation [ref=e43]:
+              - list [ref=e44]:
+                - listitem [ref=e45]:
+                  - link "The Hardware" [ref=e46] [cursor=pointer]:
+                    - /url: "#the-hardware"
+                - listitem [ref=e47]:
+                  - link "Making it Interactive" [ref=e48] [cursor=pointer]:
+                    - /url: "#making-it-interactive"
+                - listitem [ref=e49]:
+                  - link "Recursive Animations in Python" [ref=e50] [cursor=pointer]:
+                    - /url: "#recursive-animations-in-python"
+                - listitem [ref=e51]:
+                  - link "Check it out" [ref=e52] [cursor=pointer]:
+                    - /url: "#check-it-out"
+          - generic [ref=e53]:
+            - paragraph [ref=e54]:
+              - text: I recently finished my latest project,
+              - strong [ref=e55]: GANGWAY
+              - text: (it’s a stupid recursive acronym), and I wanted to share a behind-the-scenes look at how it works. It’s an interactive lighting installation that reacts to people walking through it at the hallway to the
+              - link "FSI Reutlingen" [ref=e56] [cursor=pointer]:
+                - /url: https://www.fsireutlingen.de/
+              - text: .
+            - heading "The Hardware Anker" [level=2] [ref=e57]:
+              - text: The Hardware
+              - link "Anker" [ref=e59] [cursor=pointer]:
+                - /url: "#the-hardware"
+                - text: "#"
+            - paragraph [ref=e60]:
+              - text: The core of the system is a
+              - strong [ref=e61]: Raspberry Pi 4B
+              - text: controlling nine 2m long LED strips suspended from the ceiling. I’m using
+              - strong [ref=e62]: WS2805
+              - text: strips, which required writing a custom Python driver (a modified version of
+              - code [ref=e63]: "`rpi-ws281x`"
+              - text: ) to handle the specific protocol quirks properly.
+            - heading "Making it Interactive Anker" [level=2] [ref=e64]:
+              - text: Making it Interactive
+              - link "Anker" [ref=e66] [cursor=pointer]:
+                - /url: "#making-it-interactive"
+                - text: "#"
+            - paragraph [ref=e67]:
+              - text: The real magic happens with the sensor integration. I installed a
+              - strong [ref=e68]: XOVIS PC2-L
+              - text: person counter to track movement in the area.
+            - paragraph [ref=e69]: Instead of just triggering a simple motion sensor event, the system actually tracks the specific coordinates of people. I implemented a homographic projection (projection mapping) pipeline that translates the camera’s view directly onto the floor plan of the LED installation. This means if you stand in a specific spot, the lights tracking you are physically accurate to your location.
+            - heading "Recursive Animations in Python Anker" [level=2] [ref=e70]:
+              - text: Recursive Animations in Python
+              - link "Anker" [ref=e72] [cursor=pointer]:
+                - /url: "#recursive-animations-in-python"
+                - text: "#"
+            - paragraph [ref=e73]: On the software side, I built a procedural animation engine in Python. The coolest feature is the ability to recursively nest animations.
+            - paragraph [ref=e74]: "Instead of writing one massive function for a complex effect, I can compose them like this:"
+            - code [ref=e78]:
+              - generic [ref=e80]: "# Create a complex behavior by nesting simple functions"
+              - generic [ref=e82]: animation = schedule(
+              - generic [ref=e84]: primary=proximity_speed(
+              - generic [ref=e86]: animation=blend(rainbow(), sparkle()),
+              - generic [ref=e88]: mode="speed up"
+              - generic [ref=e90]: ),
+              - generic [ref=e92]: secondary=idle_wave(),
+              - generic [ref=e94]: start="18:00",
+              - generic [ref=e96]: end="06:00"
+              - generic [ref=e98]: )
+            - paragraph [ref=e99]: This functional approach makes the system incredibly flexible.
+            - heading "Check it out Anker" [level=2] [ref=e100]:
+              - text: Check it out
+              - link "Anker" [ref=e102] [cursor=pointer]:
+                - /url: "#check-it-out"
+                - text: "#"
+            - paragraph [ref=e103]:
+              - text: It’s been a fun challenge combining hardware, low-level driver code, and high-level visual logic. You can check out the full technical documentation and code on
+              - link "GitHub" [ref=e104] [cursor=pointer]:
+                - /url: https://github.com/frederikbeimgraben/gangway
+              - text: .
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - img "Frederik Beimgraben" [ref=e108]
+            - generic [ref=e109]:
+              - generic [ref=e110]: Autor
+              - generic [ref=e111]: Frederik Beimgraben
+              - generic [ref=e112]: Ich studiere an der Hochschule Reutlingen und engagiere mich dort im AStA, Fakultätsrat, Senat und in der Studienkommission. Hier schreibe ich über Linux, selbstgehostete Dienste und eigene Projekte.
+              - generic [ref=e114]:
+                - link "Github" [ref=e115] [cursor=pointer]:
+                  - /url: https://github.com/frederikbeimgraben
+                  - img [ref=e117]
+                - link "Email" [ref=e119] [cursor=pointer]:
+                  - /url: mailto:frederik@beimgraben.net
+                  - img [ref=e121]
+                - link "Matrix" [ref=e123] [cursor=pointer]:
+                  - /url: https://matrix.to/#/@frederik:beimgraben.net
+                  - img [ref=e125]
+                - link "Linkedin" [ref=e127] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/frederik-beimgraben/
+                  - img [ref=e129]
+                - link "Pgpkey" [ref=e131] [cursor=pointer]:
+                  - /url: https://keys.openpgp.org/vks/v1/by-fingerprint/E7B547E98B7DADFFF5E79AEAF12BC7A81B13A543
+                  - img [ref=e133]
+          - generic [ref=e135]:
+            - separator [ref=e136]
+            - link "← Antragsplattform für das STUPA Reutlingen 14. November 2025" [ref=e139] [cursor=pointer]:
+              - /url: https://beimgraben.net/posts/2025-11-14_antragsplattform/
+              - generic [ref=e140]: ←
+              - generic [ref=e141]:
+                - generic [ref=e142]: Antragsplattform für das STUPA Reutlingen
+                - time [ref=e144]: 14. November 2025
+    - link "Zum Anfang scrollen" [ref=e145] [cursor=pointer]:
+      - /url: "#the-top"
+      - text: ↑
+    - contentinfo [ref=e146]:
+      - navigation [ref=e147]:
+        - list [ref=e148]:
+          - listitem [ref=e149]:
+            - link "Impressum" [ref=e150] [cursor=pointer]:
+              - /url: /datenschutz/
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - paragraph [ref=e153]: © 2026 Frederik Beimgraben
+          - paragraph [ref=e154]:
+            - text: Erstellt mit
+            - link "Hugo" [ref=e155] [cursor=pointer]:
+              - /url: https://gohugo.io/
+            - text: "&"
+            - link "Congo" [ref=e156] [cursor=pointer]:
+              - /url: https://github.com/jpanther/congo
+        - generic [ref=e157]:
+          - button "Zum violetten Farbschema wechseln" [ref=e159] [cursor=pointer]:
+            - img [ref=e162]
+          - button "appearance switcher" [ref=e165] [cursor=pointer]:
+            - generic "Zum hellen Erscheinungsbild wechseln" [ref=e166]:
+              - img [ref=e168]

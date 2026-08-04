@@ -5,5 +5,5 @@ description: "Persönliche Seite von Frederik Beimgraben — Notizen zu Linux, s
 
 
 {{< lead >}}
-Ich beschäftige mich mit Linux und deklarativer Systemadministration, schreibe Software in Python/C++/TypeScript/..., und nehme gelegentlich Hardware auseinander. Hier landen Dinge, zu denen ich beim Suchen selbst nichts gefunden habe.
+Ich beschäftige mich mit Linux und deklarativer Systemadministration, schreibe Software in Python, C++, TypeScript und was sonst gerade passt, und nehme gelegentlich Hardware auseinander. Hier landen Dinge, zu denen ich beim Suchen selbst nichts gefunden habe.
 {{< /lead >}}

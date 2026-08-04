@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - link "↓Zum Hauptinhalt springen" [ref=e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e4]:
+    - navigation [ref=e5]:
+      - link "beimgraben.net" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "beimgraben.net" [ref=e8]
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Blog" [ref=e11] [cursor=pointer]:
+            - /url: /posts/
+        - listitem [ref=e12]:
+          - button "Suche (/)" [ref=e13] [cursor=pointer]:
+            - img [ref=e16]
+  - generic [ref=e18]:
+    - main [ref=e19]:
+      - article [ref=e20]:
+        - generic [ref=e21]:
+          - img "Frederik Beimgraben" [ref=e23]
+          - heading "Frederik Beimgraben" [level=1] [ref=e24]
+          - heading "Student, Entwickler" [level=2] [ref=e25]
+          - generic [ref=e27]:
+            - link "Github" [ref=e28] [cursor=pointer]:
+              - /url: https://github.com/frederikbeimgraben
+              - img [ref=e30]
+            - link "Email" [ref=e32] [cursor=pointer]:
+              - /url: mailto:frederik@beimgraben.net
+              - img [ref=e34]
+            - link "Matrix" [ref=e36] [cursor=pointer]:
+              - /url: https://matrix.to/#/@frederik:beimgraben.net
+              - img [ref=e38]
+            - link "Linkedin" [ref=e40] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/frederik-beimgraben/
+              - img [ref=e42]
+            - link "Pgpkey" [ref=e44] [cursor=pointer]:
+              - /url: https://keys.openpgp.org/vks/v1/by-fingerprint/E7B547E98B7DADFFF5E79AEAF12BC7A81B13A543
+              - img [ref=e46]
+        - generic [ref=e49]: Ich beschäftige mich mit Linux und deklarativer Systemadministration, schreibe Software in Python/C++/TypeScript/…, und nehme gelegentlich Hardware auseinander. Hier landen Dinge, zu denen ich beim Suchen selbst nichts gefunden habe.
+    - contentinfo [ref=e50]:
+      - navigation [ref=e51]:
+        - list [ref=e52]:
+          - listitem [ref=e53]:
+            - link "Impressum" [ref=e54] [cursor=pointer]:
+              - /url: /datenschutz/
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: © 2026 Frederik Beimgraben
+          - paragraph [ref=e58]:
+            - text: Erstellt mit
+            - link "Hugo" [ref=e59] [cursor=pointer]:
+              - /url: https://gohugo.io/
+            - text: "&"
+            - link "Congo" [ref=e60] [cursor=pointer]:
+              - /url: https://github.com/jpanther/congo
+        - generic [ref=e61]:
+          - button "Zum violetten Farbschema wechseln" [ref=e63] [cursor=pointer]:
+            - img [ref=e66]
+          - button "appearance switcher" [ref=e69] [cursor=pointer]:
+            - generic "Zum hellen Erscheinungsbild wechseln" [ref=e70]:
+              - img [ref=e72]
