@@ -22,5 +22,5 @@ title = "beimgraben.net"
       { email = "mailto:frederik@beimgraben.net" },
       { matrix = "https://matrix.to/#/@frederik:beimgraben.net" },
       { linkedin = "https://www.linkedin.com/in/frederik-beimgraben/" },
-      { pgpkey = "https://keys.openpgp.org/vks/v1/by-fingerprint/E7B547E98B7DADFFF5E79AEAF12BC7A81B13A543" }
+      { pgpkey = "https://keys.openpgp.org/vks/v1/by-fingerprint/4741540388043E02886FDEF9CA56091585F5FE30" }
     ]
