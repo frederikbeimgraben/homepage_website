@@ -262,19 +262,60 @@ html[data-theme="bordeaux"].dark {
    Header
    -------------------------------------------------------------------------- */
 
-/* Underline only the text band of the logo: the wordmark spans 7.5%-92.5% of
-   the canvas (fiducial columns excluded), baseline sits at ~70% height. */
+/* The logo is a picture of the wordmark, so its size and position have to be
+   driven by the type inside the file rather than by the file's canvas.
+
+   That type is JetBrains Mono, the same face the menu links use, so "the same
+   size" is exact rather than a matter of taste: render it at the same em.
+   img/logo-header-*.svg set the wordmark at `scale(0.1656)` on a 320-unit-tall
+   canvas — an em of 165.6 units — with the baseline at y=225.1. Both numbers
+   below come from there, so re-exporting the logo means re-reading them off
+   the new file. */
 .logo-link {
+  /* Congo sets the header in `text-lg`: 1.125rem type on a 1.75rem line box.
+     Chrome centres the 22px content box in that line box and puts 17px of
+     ascent above the baseline, so the menu's baseline sits
+     (28 - 22) / 2 + 17 = 20px below the top of its row. */
+  --menu-line: 1.75rem;
+  --menu-font-size: 1.125rem;
+  --menu-baseline: 1.25rem;
+
+  /* Optical correction, judged by eye rather than derived. Sitting the two
+     baselines on one line is geometrically exact — measured off an 8x render,
+     the flat-bottomed glyphs of the wordmark and of the menu links land on the
+     same row — but it does not look right: the wordmark is lowercase
+     throughout while the menu links carry caps and ascenders, so its lighter
+     mass reads as hanging below them. A pixel of lift settles it. */
+  --logo-optical-lift: 1px;
+
+  /* Scaling the canvas by 320/165.6 renders the wordmark at exactly the menu's
+     font size. The old fixed 2.4rem rendered it at about 20px against the
+     menu's 18px. */
+  --logo-height: calc(var(--menu-font-size) * 320 / 165.6);
+
   display: inline-flex;
   position: relative;
+
+  /* Exactly one menu line box tall, with the image overflowing it into the
+     header's padding. Congo aligns the logo and the menu to the *top* of the
+     nav below `sm`, where the menu stacks into two rows, so matching the height
+     of the menu's first row is what puts the two on one line; from `sm` up the
+     nav centres both instead, and an equal height keeps them centred together.
+     Either way the top of this box is the top of the menu's first row. */
+  height: var(--menu-line);
+  align-items: flex-start;
 }
 
+/* Underline only the text band of the logo on hover: the wordmark spans
+   7.5%-92.5% of the canvas width, fiducial columns excluded. The rule sits 2px
+   under the wordmark's baseline, the same offset `underline-offset-2` gives the
+   menu links, so it carries the optical lift too. */
 .logo-link::after {
   content: "";
   position: absolute;
   left: 7.5%;
   right: 7.5%;
-  top: 73%;
+  top: calc(var(--menu-baseline) - var(--logo-optical-lift) + 2px);
   height: 2px;
   background-color: transparent;
 }
@@ -284,9 +325,16 @@ html[data-theme="bordeaux"].dark {
 }
 
 .logo-link img {
-  height: 2.4rem;
+  height: var(--logo-height);
   width: auto;
   max-width: none;
+
+  /* Sit the wordmark's baseline, y=225.1 of the 320-unit canvas, on the menu's,
+     less the optical lift. */
+  margin-top: calc(
+    var(--menu-baseline) - var(--logo-height) * 225.1 / 320 -
+      var(--logo-optical-lift)
+  );
 }
 
 /* Below Congo's `sm` breakpoint the header needs room for the skyline strip.
