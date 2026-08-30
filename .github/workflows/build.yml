@@ -70,7 +70,10 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: site-${{ github.sha }}
+          # On a pull_request event github.sha is the ephemeral merge commit,
+          # which exists in no branch, so name the artifact after the commit a
+          # reader can actually check out.
+          name: site-${{ github.event.pull_request.head.sha || github.sha }}
           path: public/
           if-no-files-found: error
           retention-days: 14
