@@ -1,0 +1,79 @@
+# Build the site on every push to main and every pull request, and keep the
+# result as a downloadable artifact.
+#
+# This does not deploy. publish.sh builds locally and rsyncs to the webroot,
+# and the server has had no hugo since 29918110. The point of this workflow is
+# to catch a build that breaks before it reaches a deploy, and to leave every
+# commit with a copy of the site it produces.
+
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer commit on the same ref makes the older build pointless.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build the site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      # The theme and plausible-hugo come in as Hugo Modules, so the build
+      # needs a Go toolchain to fetch them. go.mod names the version, and
+      # go.sum keys the module cache.
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Install Hugo
+        env:
+          # Keep in step with the hugo in flake.nix's nixpkgs, which is what
+          # publish.sh builds with. The extended build is what the theme
+          # expects. The digest is the one in the release's checksums file.
+          HUGO_VERSION: 0.151.0
+          HUGO_SHA256: f2fe3b4ef90bf053d93c713eca1d4d5a467d8d2d5da858a448d55eb71ad44ddf
+        run: |
+          set -euo pipefail
+          curl -sSLo hugo.tar.gz \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          echo "${HUGO_SHA256}  hugo.tar.gz" | sha256sum --check --strict -
+          tar -xzf hugo.tar.gz hugo
+          sudo install -m 0755 hugo /usr/local/bin/hugo
+          rm hugo hugo.tar.gz
+          hugo version
+
+      - name: Build
+        run: |
+          set -euo pipefail
+          # The same flags publish.sh uses, so this builds what a deploy would.
+          hugo --gc --minify
+          # publish.sh copies this in afterwards: the Search Console token sits
+          # at the repo root rather than under static/, so hugo never sees it.
+          cp google*.html public/
+
+      # hugo exits 0 on some configuration mistakes that leave no pages, and
+      # publish.sh refuses to rsync such a build. Fail here for the same reason.
+      - name: Check the build produced a site
+        run: test -s public/index.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          # On a pull_request event github.sha is the ephemeral merge commit,
+          # which exists in no branch, so name the artifact after the commit a
+          # reader can actually check out.
+          name: site-${{ github.event.pull_request.head.sha || github.sha }}
+          path: public/
+          if-no-files-found: error
+          retention-days: 14
