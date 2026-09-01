@@ -1,12 +1,12 @@
-# Build the site on every push to main and every pull request, and keep the
-# result as a downloadable artifact.
+# Build the site on every push to main and every pull request, keep the result
+# as a downloadable artifact, and copy a push to main into the document root.
 #
-# This does not deploy. publish.sh builds locally and rsyncs to the webroot,
-# and the server has had no hugo since 29918110. The point of this workflow is
-# to catch a build that breaks before it reaches a deploy, and to leave every
-# commit with a copy of the site it produces.
+# The server has had no hugo since 29918110, so it cannot build the site. CI
+# builds it and writes the result over SSH, with the same flags publish.sh
+# uses, so what this deploys is what a local publish would have deployed.
+# publish.sh stays as the manual path.
 
-name: Build
+name: Build and deploy
 
 on:
   push:
@@ -17,10 +17,12 @@ on:
 permissions:
   contents: read
 
-# A newer commit on the same ref makes the older build pointless.
+# A newer commit on the same ref makes the older build pointless. On main it
+# does not: cancelling there can stop a run in the middle of `rsync --delete`
+# and leave the live document root half emptied. Queue those instead.
 concurrency:
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build:
@@ -83,3 +85,32 @@ jobs:
           path: public/
           if-no-files-found: error
           retention-days: 14
+
+      - name: Copy the site into the document root
+        # A pull request build stops at the artifact. GitHub keeps secrets away
+        # from a run that a fork starts, and this condition says the same thing
+        # again, where a reader can see it.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          # The host key of beimgraben.net. StrictHostKeyChecking=accept-new
+          # would trust whatever answers, because each runner is new and every
+          # run is therefore a first contact.
+          KNOWN_HOST: beimgraben.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC419qNR144IiW66vCnljvz1iiT5HRS7/wmbO7R5SYay
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/key"
+          printf '%s\n' "$KNOWN_HOST" > "$RUNNER_TEMP/known_hosts"
+          # The key on the server carries command="rrsync -wo /var/www/home",
+          # so `.` is the root of that directory and no other path is
+          # reachable. rrsync refuses `:/` as an unsafe arg. It also disables
+          # -K, -L and -k when it restricts a subdirectory, so those must stay
+          # out of the flags. -rlc --delete is what publish.sh sends.
+          rsync -rlc --delete \
+            -e "ssh -i $RUNNER_TEMP/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/known_hosts" \
+            public/ webdeploy@beimgraben.net:.
+
+      - name: The deployed site must answer
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: curl -fsS --retry 3 --retry-delay 2 -o /dev/null https://beimgraben.net/
