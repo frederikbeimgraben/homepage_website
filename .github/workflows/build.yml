@@ -2,9 +2,9 @@
 # as a downloadable artifact, and copy a push to main into the document root.
 #
 # The server has had no hugo since 29918110, so it cannot build the site. CI
-# builds it and writes the result over SSH, with the same flags publish.sh
-# uses, so what this deploys is what a local publish would have deployed.
-# publish.sh stays as the manual path.
+# builds it and writes the result over SSH, and this is the only path that
+# deploys. The flake builds the same site for local work: `nix develop` gives
+# a shell with hugo, `nix build` gives the finished tree.
 
 name: Build and deploy
 
@@ -30,26 +30,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       # The theme and plausible-hugo come in as Hugo Modules, so the build
       # needs a Go toolchain to fetch them. go.mod names the version, and
       # go.sum keys the module cache.
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v7
         with:
           go-version-file: go.mod
 
       - name: Install Hugo
         env:
           # Keep in step with the hugo in flake.nix's nixpkgs, which is what
-          # publish.sh builds with. Read that version with
+          # a local `nix build` uses. Read that version with
           #   nix eval --raw --impure --expr \
           #     '(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.x86_64-linux.hugo.version'
           # and take the digest from the release's checksums file. Nothing
-          # checks that the two agree, and they had already drifted once: this
-          # pin said 0.151.0 while the lock had moved to 0.152.2, so CI was not
-          # building what publish.sh builds. The extended build is what the
-          # theme expects.
+          # checks that the two agree, and they had already drifted once:
+          # this pin said 0.151.0 while the lock had moved to 0.152.2. The
+          # extended build is what the theme expects.
           HUGO_VERSION: 0.152.2
           HUGO_SHA256: 416bcfbdf5f68469ec9644dbe507da50fc21b94b69a125b059d64ed2cb4d8c27
         run: |
@@ -65,18 +64,20 @@ jobs:
       - name: Build
         run: |
           set -euo pipefail
-          # The same flags publish.sh uses, so this builds what a deploy would.
+          # --gc --minify matches the flake package, so this tree and a local
+          # `nix build` are the same.
           hugo --gc --minify
-          # publish.sh copies this in afterwards: the Search Console token sits
-          # at the repo root rather than under static/, so hugo never sees it.
+          # The Search Console token sits at the repo root rather than under
+          # static/, so hugo never sees it and it has to be copied in.
           cp google*.html public/
 
-      # hugo exits 0 on some configuration mistakes that leave no pages, and
-      # publish.sh refuses to rsync such a build. Fail here for the same reason.
+      # hugo exits 0 on some configuration mistakes that leave no pages. The
+      # deploy below runs `rsync --delete`, so it would empty the live site
+      # rather than fail. Stop here instead.
       - name: Check the build produced a site
         run: test -s public/index.html
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           # On a pull_request event github.sha is the ephemeral merge commit,
           # which exists in no branch, so name the artifact after the commit a
@@ -106,7 +107,7 @@ jobs:
           # so `.` is the root of that directory and no other path is
           # reachable. rrsync refuses `:/` as an unsafe arg. It also disables
           # -K, -L and -k when it restricts a subdirectory, so those must stay
-          # out of the flags. -rlc --delete is what publish.sh sends.
+          # out of the flags.
           rsync -rlc --delete \
             -e "ssh -i $RUNNER_TEMP/key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/known_hosts" \
             public/ webdeploy@beimgraben.net:.
