@@ -40,10 +40,16 @@ jobs:
       - name: Install Hugo
         env:
           # Keep in step with the hugo in flake.nix's nixpkgs, which is what
-          # publish.sh builds with. The extended build is what the theme
-          # expects. The digest is the one in the release's checksums file.
-          HUGO_VERSION: 0.151.0
-          HUGO_SHA256: f2fe3b4ef90bf053d93c713eca1d4d5a467d8d2d5da858a448d55eb71ad44ddf
+          # publish.sh builds with. Read that version with
+          #   nix eval --raw --impure --expr \
+          #     '(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.x86_64-linux.hugo.version'
+          # and take the digest from the release's checksums file. Nothing
+          # checks that the two agree, and they had already drifted once: this
+          # pin said 0.151.0 while the lock had moved to 0.152.2, so CI was not
+          # building what publish.sh builds. The extended build is what the
+          # theme expects.
+          HUGO_VERSION: 0.152.2
+          HUGO_SHA256: 416bcfbdf5f68469ec9644dbe507da50fc21b94b69a125b059d64ed2cb4d8c27
         run: |
           set -euo pipefail
           curl -sSLo hugo.tar.gz \
